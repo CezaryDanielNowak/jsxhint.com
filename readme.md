@@ -12,6 +12,7 @@ Next, update submodules:
 
     $ git submodule init
     $ git submodule update
+    $ cd res/JSXHint/ && npm install
 
 Next, run the site using:
 

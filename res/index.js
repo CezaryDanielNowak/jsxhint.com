@@ -150,7 +150,7 @@ function lint() {
   var config = {}
 
   if (!worker) {
-    worker = new Worker("/res/worker.js")
+    worker = new Worker("/res/jsx-worker.js")
     worker.addEventListener("message", function (ev) { display(JSON.parse(ev.data.result)) })
   }
 

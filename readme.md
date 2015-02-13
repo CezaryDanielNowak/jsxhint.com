@@ -8,6 +8,11 @@ First install its dependencies using the following command:
 
     $ npm install
 
+Next, update submodules:
+
+    $ git submodule init
+    $ git submodule update
+
 Next, run the site using:
 
     $ npm start

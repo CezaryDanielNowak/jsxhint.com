@@ -8,6 +8,10 @@
     <meta name=description content="JSHint, a JavaScript Code Quality Tool">
     <meta name=author      content="Anton Kovalyov">
 
+    {{#if page.redirect}}
+    <meta http-equiv=refresh content="0; url={{page.redirect}}">
+    {{/if}}
+
     {{#if site.dev}}
     <link rel=stylesheet href="/res/bootstrap.css">
     <link rel=stylesheet href="/res/docs.css">
@@ -55,7 +59,7 @@
               <li><a href="/about/">About</a></li>
               <li><a href="/docs/">Docs</a></li>
               <li><a href="/install/">Install</a></li>
-              <li><a href="/hack/">Hack</a></li>
+              <li><a href="/contribute/">Contribute</a></li>
               <li><a href="/blog/">Blog</a></li>
             </ul>
           </div>
@@ -82,24 +86,6 @@
           {{#if page.sideimage}}
           <img class="sideimage" src="/res/{{ page.sideimage }}">
           {{/if}}
-
-          {{#unless page.noad}}
-          <div class="ad">
-            <div id="carbonads-container">
-              <div class="carbonad">
-                <div id="azcarbon"></div>
-                <script type="text/javascript">
-                  var z = document.createElement("script");
-                  z.type = "text/javascript";
-                  z.async = true;
-                  z.src = "http://engine.carbonads.com/z/49189/azcarbon_2_1_0_HORIZ";
-                  var s = document.getElementsByTagName("script")[0];
-                  s.parentNode.insertBefore(z, s);
-                </script>
-              </div>
-            </div>
-          </div>
-          {{/unless}}
         </div>
       </div>
     </div>

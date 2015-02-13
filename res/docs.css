@@ -16,11 +16,6 @@ a.anchor {
   margin: 20px 0 20px 0;
 }
 
-.carbonad {
-  border: solid 1px #ddd !important;
-  margin: 20px 0 0 0;
-}
-
 .content {
   font-family: Sans-Serif;
   font-size: 110%;
@@ -53,4 +48,17 @@ a.anchor {
 
 .blog-list .link {
   padding-left: 20px;
+}
+
+.deprecation-msg {
+  margin-bottom: 1em;
+}
+
+.deprecation-msg strong {
+  font-weight: bold;
+}
+
+.deprecation-msg p {
+  display: inline;
+  margin: 0;
 }

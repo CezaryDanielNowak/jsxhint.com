@@ -1,6 +1,3 @@
 [submodule "jshint"]
 	path = res/jshint
 	url = git@github.com:jshint/jshint.git
-[submodule "JSXHint"]
-	path = res/JSXHint
-	url = git@github.com:STRML/JSXHint.git

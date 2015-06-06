@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>:)</title>
+	<style>
+	</style>
+	<script>
+		'use strict';
+		var cache = parseInt(Math.random()*1000000000000, 10).toString(36);
+		var prefs  = {
+		  opts: {
+		    forin:    true,
+		    noarg:    true,
+		    bitwise:  true,
+		    nonew:    true,
+		    strict:   false,
+
+		    browser:  true,
+		    devel:    true,
+		    node:     false,
+		    jquery:   false,
+		    esnext:   false,
+		    moz:      false,
+		    es3:      false
+		  },
+
+		  rev: {
+		    eqnull:   true,
+		    debug:    true,
+		    boss:     true,
+		    evil:     true,
+		    loopfunc: true,
+		    laxbreak: true
+		  },
+
+		  meta: {
+		    unused:   true,
+		    undef:    true,
+		    complex:  true
+		  },
+		  jsx: {
+		  	harmony: false
+		  }
+		}
+
+		// https://github.com/sindresorhus/multiline
+		var reCommentContents = /\/\*!?(?:\@preserve)?[ \t]*(?:\r\n|\n)([\s\S]*?)(?:\r\n|\n)[ \t]*\*\//;
+		var multiline = function (fn) {
+			if (typeof fn !== 'function') {
+				throw new TypeError('Expected a function');
+			}
+			var match = reCommentContents.exec(fn.toString());
+			if (!match) {
+				throw new TypeError('Multiline comment missing.');
+			}
+			return match[1];
+		};
+		function each(o, cb) { Object.keys(o).forEach(function (k) { cb(o[k], k) }) }
+
+		var value = multiline(function(){/*
+			// menu.
+
+			function main(unused) {
+			  return 1 | ('Hello, World!');
+			}
+
+			main();
+		*/})
+		var config = {}
+		each(prefs.opts, function (state, name) { config[name] = state });
+		each(prefs.rev,  function (state, name) { config[name] = !state });
+		each(prefs.jsx,  function (state, name) { config[name] = !state });
+
+		var jsxworker = new Worker("/res/jsx-worker.js?" + cache)
+		jsxworker.addEventListener("message", function (ev) {
+			console.info('jsx-worker', ev.data.result);
+		});
+		jsxworker.postMessage({ task: "lint", code: value, config: config });
+		
+
+		var jsworker = new Worker("/res/js-worker.js?" + cache)
+		jsworker.addEventListener("message", function (ev) {
+			console.info('jsworker', ev.data.result);
+		});
+		jsworker.postMessage({ task: "lint", code: value, config: config });
+
+
+
+		setTimeout(function (argument) {
+			console.log('OK and now JSX code...');
+
+			var value = multiline(function(){/*
+				var HelloMessage = React.createClass({
+				  render: function() {
+				    return <div>Hello {this.props.name}</div>;
+				  }
+				});
+
+				React.render(<HelloMessage name="John" />, mountNode);
+			*/});
+			jsxworker.postMessage({ task: "lint", code: value, config: config });
+			jsworker.postMessage({ task: "lint", code: value, config: config });
+
+		}, 1000);
+
+
+
+
+
+	</script>
+</head>
+<body>
+
+
+
+
+
+
+
+
+</body>
+</html>

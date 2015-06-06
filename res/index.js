@@ -56,6 +56,10 @@ var prefs  = restore("prefs") || {
     unused:   true,
     undef:    true,
     complex:  true
+  },
+
+  jsx: {
+    harmony: false
   }
 }
 
@@ -148,7 +152,6 @@ function main() {
 function lint() {
   var value  = editor.getValue()
   var config = {}
-
   if (!worker) {
     worker = new Worker("/res/jsx-worker.js")
     worker.addEventListener("message", function (ev) { display(JSON.parse(ev.data.result)) })
@@ -156,6 +159,7 @@ function lint() {
 
   each(prefs.opts, function (state, name) { config[name] = state })
   each(prefs.rev,  function (state, name) { config[name] = !state })
+  each(prefs.jsx,  function (state, name) { config[name] = !state })
 
   worker.postMessage({ task: "lint", code: value, config: config })
 }

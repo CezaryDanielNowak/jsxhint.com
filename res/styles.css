@@ -137,7 +137,8 @@ button:hover {
   text-align: right;
 }
 
-.whiteboard button {
+.whiteboard button,
+.editor-controls button {
   transition-property: color;
   transition-duration: 0.5s;
   transition-timing-function: ease-out;
@@ -145,13 +146,24 @@ button:hover {
   color: #666;
 }
 
-.whiteboard button.active {
+.whiteboard button.active,
+.editor-controls button.active {
   color: #9ac;
 }
 
 .whiteboard #configure {
   display: none;
+}
+.editor-controls {
+  bottom: 0;
+  left: 10px;
+  position: absolute;
+}
+
+.whiteboard #configure,
+.editor-controls {
   font-family: Sans-Serif;
+  color: rgb(170, 170, 170);
 }
 
 .whiteboard #configure > div {
@@ -166,7 +178,8 @@ button:hover {
   margin-bottom: 10px;
 }
 
-.whiteboard #configure button {
+.whiteboard #configure button,
+.editor-controls button {
   display: block;
   background-color: transparent;
   color: inherit;
@@ -176,7 +189,8 @@ button:hover {
   text-align: left;
 }
 
-.whiteboard #configure button:before {
+.whiteboard #configure button:before,
+.editor-controls button:before {
   transition-property: color;
   transition-duration: 0.5s;
   transition-timing-function: ease-out;
@@ -186,7 +200,8 @@ button:hover {
   color: #444;
 }
 
-.whiteboard #configure button.active:before {
+.whiteboard #configure button.active:before,
+.editor-controls button.active:before {
   color: #9ac;
 }
 

@@ -18,7 +18,10 @@
     <link rel=stylesheet href="/res/codemirror.css">
     <link rel=stylesheet href="/res/styles.css">
     {{else}}
-    <link rel=stylesheet href="/res/index.min.css">
+    <!-- link rel=stylesheet href="/res/index.min.css" -->
+    <link rel=stylesheet href="/res/bootstrap.css">
+    <link rel=stylesheet href="/res/codemirror.css">
+    <link rel=stylesheet href="/res/styles.css">
     {{/if}}
 
     <script>
@@ -31,7 +34,11 @@
     <script src="/res/javascript.js"></script>
     <script src="/res/index.js"></script>
     {{ else }}
-    <script src="/res/scripts.min.js"></script>
+    <!-- script src="/res/scripts.min.js"></script -->
+
+    <script src="/res/codemirror.js"></script>
+    <script src="/res/javascript.js"></script>
+    <script src="/res/index.js"></script>
     {{/if}}
   </head>
 
@@ -93,6 +100,10 @@
       </div>
     </div>
 
+    <div class="editor-controls">
+      <button id="previewJSX" data-type="toggle" data-target="">Show compiled JSX</button>
+    </div>
+
     <div class="sidebar">
       <h1><img src="/res/jshint-dark.png" alt="JSXHint"></h1>
 
@@ -120,7 +131,7 @@
       // Hello.
       //
       // This is JSXHint, a tool that helps to detect errors and potential
-      // problems in your JavaScript code.
+      // problems in your JavaScript code. ReactJS/JSX syntax is supported.
       //
       // To start, simply enter some JavaScript anywhere on this page. Your
       // report will appear on the right side.

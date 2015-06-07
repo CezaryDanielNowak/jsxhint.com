@@ -58,6 +58,6 @@ self.onmessage = function (ev) {
     if(extraErrors.length) {
       ret.errors = extraErrors.concat(ret.errors);
     }
-    self.postMessage({ task: "lint", result: JSON.stringify(ret) })
+    self.postMessage({ task: "lint", result: JSON.stringify(ret), jsCode: jsCode})
   }
 }

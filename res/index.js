@@ -25,6 +25,7 @@ function restore(key) {
 var editor = null
 var worker = null
 var cache  = { toggled: { configure: false, output: true } }
+var jsCode = null;
 
 var prefs  = restore("prefs") || {
   opts: {
@@ -94,17 +95,17 @@ function setup() {
     var button  = ev.target
     var targets = button.getAttribute("data-target")
 
-    targets.split(",").forEach(function (key, i) {
-      var target  = el("#" + key)
-      var state   = cache.toggled[key]
+    button.classList.toggle("active");
+    if(targets) {
+      targets.split(",").forEach(function (key) {
+        var target  = el("#" + key)
+        var state   = cache.toggled[key]
 
-      cache.toggled[key] = state = !state
-      target.style.display = state ? "block" : "none"
-      if (!state) save("prefs", prefs)
-
-      if (i === 0)
-        button.className = state ? "active" : ""
-    })
+        cache.toggled[key] = state = !state
+        target.style.display = state ? "block" : "none"
+        if (!state) save("prefs", prefs)
+      })
+    }
   })
 
   on("body", "click", function (ev) {
@@ -118,6 +119,25 @@ function setup() {
     button.className = pref(id) ? "active" : ""
     lint()
   })
+
+  var cachedValue = null;
+  on("body", "click", function (ev) {
+    var button = ev.target;
+    if (button.id !== "previewJSX") {
+      return;
+    }
+
+    if(button.classList.contains('active')) {
+      cachedValue = editor.getValue();
+      editor.setOption('readOnly', true);
+      editor.setValue(jsCode || '');
+    } else {
+      editor.setValue(cachedValue);
+      cachedValue = null;
+      editor.setOption('readOnly', false);
+    }
+  })
+
 }
 
 function main() {
@@ -134,12 +154,14 @@ function main() {
     lineNumbers:    true,
     indentWithTabs: false
   })
-
   setup()
   lint()
 
   var tm = null
   editor.on("change", function (cm) {
+    if(editor.getOption('readOnly')) {
+      return; // don't do anything when it's readOnly. ReadOnly is just for JSX preview
+    }
     if (tm)
       clearTimeout(tm)
 
@@ -155,13 +177,16 @@ function lint() {
   var config = {}
   if (!worker) {
     worker = new Worker("/res/jsx-worker.js")
-    worker.addEventListener("message", function (ev) { display(JSON.parse(ev.data.result)) })
+    worker.addEventListener("message", function (ev) {
+      jsCode = ev.data.jsCode;
+      display(JSON.parse(ev.data.result));
+    });
   }
 
   each(prefs.opts, function (state, name) { config[name] = state })
   each(prefs.rev,  function (state, name) { config[name] = !state })
   each(prefs.jsx,  function (state, name) { config[name] = state })
-  console.log(config);
+
   worker.postMessage({ task: "lint", code: value, config: config })
 }
 

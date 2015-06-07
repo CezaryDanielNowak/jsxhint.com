@@ -59,7 +59,8 @@ var prefs  = restore("prefs") || {
   },
 
   jsx: {
-    harmony: false
+    harmony: false,
+    showJSXErrors: true
   }
 }
 
@@ -159,8 +160,8 @@ function lint() {
 
   each(prefs.opts, function (state, name) { config[name] = state })
   each(prefs.rev,  function (state, name) { config[name] = !state })
-  each(prefs.jsx,  function (state, name) { config[name] = !state })
-
+  each(prefs.jsx,  function (state, name) { config[name] = state })
+  console.log(config);
   worker.postMessage({ task: "lint", code: value, config: config })
 }
 

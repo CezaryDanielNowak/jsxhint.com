@@ -2,10 +2,10 @@
 
 <html lang=en>
   <head>
-    <title>JSHint, a JavaScript Code Quality Tool</title>
+    <title>JSHint, a JavaScript Code Quality Tool - JSXHint</title>
 
     <meta charset=utf8>
-    <meta name=description content="JSHint, a JavaScript Code Quality Tool">
+    <meta name=description content="JSXHint, JSHint, a JavaScript Code Quality Tool">
     <meta name=author      content="Anton Kovalyov">
 
     <!--[if IE]>
@@ -24,11 +24,6 @@
     <script>
       if (window.self !== window.top)
         window.top.location.href = document.location.href;
-
-      var _gaq = _gaq || [];
-      _gaq.push(["_setAccount", "UA-19747012-5"]);
-      _gaq.push(["_setDomainName", "jsxhint.com"]);
-      _gaq.push(["_trackPageview"]);
     </script>
 
     {{#if site.dev}}
@@ -79,6 +74,12 @@
           <button data-type="pref" id="moz">Mozilla JavaScript extensions</button>
           <button data-type="pref" id="es3">Older environments (ES3)</button>
         </div>
+        <div>
+          <h4>JSXTransformer</h4>
+          <button data-type="pref" id="harmony">Harmony</button>
+          <button data-type="pref" id="showJSXErrors">Show compiler errors</button>
+        </div>
+
       </div>
 
       <div id="output">
@@ -93,7 +94,7 @@
     </div>
 
     <div class="sidebar">
-      <h1><img src="/res/jshint-dark.png" alt="JSHint"></h1>
+      <h1><img src="/res/jshint-dark.png" alt="JSXHint"></h1>
 
       <ul class="links">
         <li><a href="/about">About</a></li>
@@ -107,7 +108,7 @@
     <script id="text-intro" type="text/jshint">
       // Hello.
       //
-      // This is JSHint, a tool that helps to detect errors and potential
+      // This is JSXHint, a tool that helps to detect errors and potential
       // problems in your JavaScript code.
       //
       // To start, simply enter some JavaScript anywhere on this page. Your
@@ -116,14 +117,25 @@
       // Additionally, you can toggle specific options in the Configure
       // menu.
 
-      function main() {
-        return 'Hello, World!';
-      }
+      var HelloWorld = React.createClass({
+        render: function() {
+          return (
+            <p>Hello, World!</p>
+          );
+        }
+      });
 
-      main();
+      React.render(
+        <HelloWorld date={new Date()} />,
+        document.body
+      );
     </script>
 
     <script>
+      var _gaq = _gaq || [];
+      _gaq.push(["_setAccount", "UA-19747012-5"]);
+      _gaq.push(["_setDomainName", "jsxhint.com"]);
+      _gaq.push(["_trackPageview"]);
       (function () {
         var ga = document.createElement("script");
         ga.type = "text/javascript";

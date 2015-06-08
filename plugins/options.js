@@ -3,7 +3,7 @@ var fs = require("fs")
 var dox = require("dox");
 var marked = require("marked");
 
-var optionsSrc = __dirname + "/../res/jshint/src/options.js";
+var optionsSrc = __dirname + "/../node_modules/jshint/src/options.js";
 var deprecationMsg = "<strong>Warning</strong> This option has been " +
   "deprecated and will be removed in the next major release of JSHint."
 

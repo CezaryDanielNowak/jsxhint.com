@@ -12,7 +12,7 @@ self.window = {
   attachEvent: function() {}
 };
 
-importScripts("/res/jshint/dist/jshint.js")
+importScripts("/res/jshint/jshint.js")
 importScripts("/res/react/JSXTransformer.js")
 
 function transformer(config, code, extraErrors) {

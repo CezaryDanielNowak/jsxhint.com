@@ -10,7 +10,7 @@ var pkg = require(path.join(
   __dirname, "..", "node_modules", "jshint", "package.json")
 );
 var contributing = fs.readFileSync(
-  "res/jshint/CONTRIBUTING.md", { encoding: "utf-8" }
+  "./res/jshint-CONTRIBUTING.md", { encoding: "utf-8" }
 );
 var context = {
   contributionGuidelines: translateFencedCode(contributing),

@@ -19,7 +19,6 @@ function transformer(config, code, extraErrors) {
   try {
     return self.window.JSXTransformer.transform(code, {harmony: config['harmony']}).code;
   } catch(err) {
-    console.log(config);
     var wholeLine = code.split('\n')[err.lineNumber];
     if(config['showJSXErrors']) {
       extraErrors.push({

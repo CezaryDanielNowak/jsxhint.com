@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node -e \"fs=require('fs');['site', 'site/res', 'site/res/jshint'].forEach(function(path) {fs.existsSync(path) || fs.mkdirSync(path)})\" && cp -r node_modules/jshint/dist/* site/res/jshint/ && oddweb dev .",
-    "build": "node -e \"fs=require('fs');['site', 'site/res', 'site/res/jshint'].forEach(function(path) {fs.existsSync(path) || fs.mkdirSync(path)})\" && cp -r node_modules/jshint/dist/* site/res/jshint/ && oddweb build ."
+    "start": "node -e \"fs=require('fs');['site', 'site/res', 'site/res/jshint'].forEach(function(path) {fs.existsSync(path) || fs.mkdirSync(path)})\" && cp -rf node_modules/jshint/dist/* site/res/jshint/ && oddweb dev .",
+    "build": "node -e \"fs=require('fs');['site', 'site/res', 'site/res/jshint'].forEach(function(path) {fs.existsSync(path) || fs.mkdirSync(path)})\" && cp -rf node_modules/jshint/dist/* site/res/jshint/ && oddweb build ."
   },
   "dependencies": {
     "dox": "^0.6.1",

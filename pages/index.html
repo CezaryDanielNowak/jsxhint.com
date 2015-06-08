@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang=en>
   <head>
-    <title>JSHint, a JavaScript Code Quality Tool - JSXHint</title>
+    <title>JSXHint, a ReactJS/JSX Code Quality Tool online</title>
 
     <meta charset=utf8>
     <meta name=description content="JSXHint, JSHint, a JavaScript Code Quality Tool">
-    <meta name=author      content="Anton Kovalyov">
+    <meta name=author      content="Anton Kovalyov, Cezary Daniel Nowak">
 
     <!--[if IE]>
     <meta http-equiv="refresh" content="0; url=/about/">
@@ -32,6 +32,8 @@
     {{ else }}
     <script src="/res/scripts.min.js"></script>
     {{/if}}
+    <link rel="shortcut icon" href="/res/favicon.ico" />
+    <link rel="icon" type="image/png" href="/res/favicon.png" />
   </head>
 
   <body onload="main()">
@@ -96,7 +98,7 @@
     </div>
 
     <div class="sidebar">
-      <h1><img src="/res/jshint-dark.png" alt="JSXHint"></h1>
+      <h1><img src="/res/jshint-dark.png" alt="JSXHint">React JSX linter online</h1>
 
       <ul class="links">
         <li><a href="/about">About</a></li>
@@ -145,19 +147,13 @@
     </script>
 
     <script>
-      var _gaq = _gaq || [];
-      _gaq.push(["_setAccount", "UA-19747012-5"]);
-      _gaq.push(["_setDomainName", "jsxhint.com"]);
-      _gaq.push(["_trackPageview"]);
-      (function () {
-        var ga = document.createElement("script");
-        ga.type = "text/javascript";
-        ga.async = true;
-        ga.src = "//www.google-analytics.com/ga.js";
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        var st = document.getElementsByTagName("script")[0];
-        st.parentNode.insertBefore(ga, st);
-      })();
+    ga('create', 'UA-19747012-5', 'auto');
+    ga('send', 'pageview');
     </script>
   </body>
 </html>
